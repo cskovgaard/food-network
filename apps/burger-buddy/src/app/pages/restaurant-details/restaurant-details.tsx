@@ -7,6 +7,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useSearchParams, useLocation } from 'react-router-dom';
 
 import Typography from '@food/components/typography';
+import useTab from '@food/hooks/use-tab';
 
 import Map from '../../../assets/Map.png';
 import Restaurant from '../../../models/restaurant';
@@ -85,6 +86,8 @@ export const RestaurantDetails: React.FC = () => {
   const [searchParams] = useSearchParams();
   const location = useLocation();
 
+  const { setHideTabs } = useTab();
+
   React.useEffect(() => {
     const name = searchParams.get('id');
     const activeRestaurant = nearbyRestaurants.find((x) => x.name === name);
@@ -92,6 +95,10 @@ export const RestaurantDetails: React.FC = () => {
     setRestaurant(activeRestaurant);
     window.scroll({ top: 0, left: 0, behavior: 'smooth' });
   }, [location]);
+
+  React.useEffect(() => {
+    setHideTabs?.(true);
+  }, [setHideTabs]);
 
   return (
     <RestaurantsDetailsRoot>

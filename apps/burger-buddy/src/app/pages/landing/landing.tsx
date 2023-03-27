@@ -30,10 +30,14 @@ const LandingContent = styled.div`
 `;
 
 export const Landing: React.FC = () => {
-  const { activeTab } = useTab();
+  const { activeTab, setHideTabs } = useTab();
   const theme = useTheme();
 
   const teaserTitle = 'Restaurants in your area';
+
+  React.useEffect(() => {
+    setHideTabs?.(false);
+  }, [setHideTabs]);
 
   return (
     <LandingRoot>

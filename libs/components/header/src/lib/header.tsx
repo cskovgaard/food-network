@@ -78,7 +78,7 @@ interface Props {
 }
 
 export const Header: React.FC<Props> = ({ logo, title, tabs }) => {
-  const { setActiveTab } = useTab();
+  const { setActiveTab, hideTabs } = useTab();
   const { user, setUser } = useUser();
 
   const profileText = user && user.isLoggedIn ? user.name : 'Sign in';
@@ -103,7 +103,7 @@ export const Header: React.FC<Props> = ({ logo, title, tabs }) => {
           {title && <HeaderTitle variant="h1">{title}</HeaderTitle>}
         </HeaderBranding>
 
-        {tabs && <HeaderTabs tabs={tabs} onChange={setActiveTab} />}
+        {tabs && !hideTabs && <HeaderTabs tabs={tabs} onChange={setActiveTab} />}
 
         <HeaderProfile onClick={onClickProfile}>
           <ProfileText variant="text">{profileText}</ProfileText>
