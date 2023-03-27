@@ -3,6 +3,9 @@ export interface Score {
   texture?: number;
   visual?: number;
   avgRating?: string;
+  avgTaste?: string;
+  avgTexture?: string;
+  avgVisual?: string;
 }
 
 export default Score;

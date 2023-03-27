@@ -9,6 +9,7 @@ import { TabDefinition } from '@food/model/tab-definition';
 import FoodGatewayService from '@food/services/food-gateway-service';
 
 import HeaderTabs from './header-tabs';
+import { useNavigate } from 'react-router-dom';
 
 const HeaderRoot = styled.header`
   display: flex;
@@ -39,6 +40,7 @@ const HeaderBranding = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 const HeaderLogo = styled.img`
@@ -81,6 +83,8 @@ export const Header: React.FC<Props> = ({ logo, title, tabs }) => {
 
   const profileText = user && user.isLoggedIn ? user.name : 'Sign in';
 
+  const navigate = useNavigate();
+
   const onClickProfile = React.useCallback(() => {
     if (!user?.isLoggedIn) {
       const response = FoodGatewayService.userLogin();
@@ -94,7 +98,7 @@ export const Header: React.FC<Props> = ({ logo, title, tabs }) => {
   return (
     <HeaderRoot>
       <HeaderContent>
-        <HeaderBranding>
+        <HeaderBranding onClick={() => navigate('/')}>
           {logo && <HeaderLogo src={logo} alt="logo" />}
           {title && <HeaderTitle variant="h1">{title}</HeaderTitle>}
         </HeaderBranding>

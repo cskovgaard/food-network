@@ -4,9 +4,9 @@ import MediaQuery from 'react-responsive';
 
 import useTab from '@food/hooks/use-tab';
 
+import RestaurantTeaser from '../../components/restaurant-teaser';
 import Feed from './components/feed';
 import PopularReviewers from './components/popular-reviewers';
-import RestaurantTeaser from './components/restaurant-teaser';
 
 const LandingRoot = styled.div`
   display: flex;
@@ -33,16 +33,18 @@ export const Landing: React.FC = () => {
   const { activeTab } = useTab();
   const theme = useTheme();
 
+  const teaserTitle = 'Restaurants in your area';
+
   return (
     <LandingRoot>
       <LandingContent>
         <MediaQuery minWidth={theme.breakpoints.mobile}>
-          <RestaurantTeaser />
+          <RestaurantTeaser title={teaserTitle} />
           <Feed />
         </MediaQuery>
         <MediaQuery maxWidth={theme.breakpoints.mobile}>
           {activeTab?.name === 'home' && <Feed />}
-          {activeTab?.name === 'locations' && <RestaurantTeaser />}
+          {activeTab?.name === 'locations' && <RestaurantTeaser title={teaserTitle} />}
         </MediaQuery>
         <PopularReviewers />
       </LandingContent>

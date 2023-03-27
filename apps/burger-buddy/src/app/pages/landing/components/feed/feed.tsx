@@ -115,13 +115,16 @@ export const Feed: React.FC = () => {
     }, 100);
   }, [isDialogOpen]);
 
-  const handleCloseDialog = React.useCallback((newPost?: FeedPost) => {
-    setIsDialogOpen(false);
+  const handleCloseDialog = React.useCallback(
+    (newPost?: FeedPost) => {
+      setIsDialogOpen(false);
 
-    if (newPost) {
-      BurgerBuddyService.createNewPost(newPost, user?.isLoggedIn);
-    }
-  }, []);
+      if (newPost) {
+        BurgerBuddyService.createNewPost(newPost, user?.isLoggedIn);
+      }
+    },
+    [user]
+  );
 
   return (
     <FeedRoot>

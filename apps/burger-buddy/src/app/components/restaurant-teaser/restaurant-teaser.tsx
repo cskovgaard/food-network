@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import Typography from '@food/components/typography';
 import MediaCard from '@food/components/media-card';
 
-import { BurgerBuddyService } from '../../../../../services/burger-buddy-service';
-import Restaurant from '../../../../../models/restaurant';
+import { BurgerBuddyService } from '../../../services/burger-buddy-service';
+import Restaurant from '../../../models/restaurant';
 
 const RestaurantTeaserRoot = styled.div`
   display: flex;
@@ -29,7 +29,11 @@ const RestaurantTeaserList = styled.div`
   gap: ${({ theme }) => theme.spacing(8)};
 `;
 
-export const RestaurantTeaser: React.FC = () => {
+interface Props {
+  title: string;
+}
+
+export const RestaurantTeaser: React.FC<Props> = ({ title }) => {
   const [restaurants, setRestaurants] = React.useState<Restaurant[]>();
 
   React.useEffect(() => {
@@ -38,16 +42,16 @@ export const RestaurantTeaser: React.FC = () => {
 
   return (
     <RestaurantTeaserRoot>
-      <RestaurantTeaserTitle variant={'h2'}>Restaurants in your area</RestaurantTeaserTitle>
+      <RestaurantTeaserTitle variant={'h2'}>{title}</RestaurantTeaserTitle>
       <RestaurantTeaserList>
         {restaurants &&
           restaurants.map((restaurant) => (
             <MediaCard
               image={restaurant.image}
               title={restaurant.name}
-              text={restaurant.description}
+              text={restaurant.shortDesc}
               stars={restaurant.score.avgRating}
-              link={'/restaurant'}
+              link={`/restaurant?id=${restaurant.name}`}
               linkText={'Read more'}
               key={restaurant.name}
             />
