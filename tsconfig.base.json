@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@food/*": ["libs/*"],
+      "@food/components/*": ["libs/components/*/src/index.ts"],
+      "@food/contexts/*": ["libs/contexts/*/src/index.ts"],
+      "@food/hooks/*": ["libs/hooks/src/lib/*/index.ts"],
+      "@food/services/*": ["libs/services/*/src/index.ts"],
+      "@food/utils/*": ["libs/utils/*/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
