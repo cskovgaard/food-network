@@ -100,7 +100,11 @@ export const Header: React.FC<Props> = ({ logo, title, tabs }) => {
       <HeaderContent>
         <HeaderBranding onClick={() => navigate('/')}>
           {logo && <HeaderLogo src={logo} alt="logo" />}
-          {title && <HeaderTitle variant="h1">{title}</HeaderTitle>}
+          {title && (
+            <HeaderTitle variant="h1" data-testid={'header-title'}>
+              {title}
+            </HeaderTitle>
+          )}
         </HeaderBranding>
 
         {tabs && !hideTabs && <HeaderTabs tabs={tabs} onChange={setActiveTab} />}

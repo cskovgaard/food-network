@@ -1,1 +1,1 @@
-export const getGreeting = () => cy.get('h1');
+export const getHeaderTitle = () => cy.get('[data-testid="header-title"]');

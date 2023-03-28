@@ -136,12 +136,12 @@ export const RestaurantDetails: React.FC = () => {
                   <RestaurantDetailsHours day={'Sunday'} openHours={restaurant.openHours?.sun} />
                 </RestaurantDetailsSection>
                 <RestaurantDetailsSection>
-                  <Typography>Find them at their location during opening hours</Typography>
+                  <Typography>Find them here during opening hours</Typography>
                   <RestaurantDetailsMap src={Map} />
                 </RestaurantDetailsSection>
                 <RestaurantDetailsSection>
                   <Typography>
-                    To learn more you can visit their website{' '}
+                    To learn more, you can visit their website{' '}
                     <a href="https://www.google.com" target="_blank">
                       here.
                     </a>
