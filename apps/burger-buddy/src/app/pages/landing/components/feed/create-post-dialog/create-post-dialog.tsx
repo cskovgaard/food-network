@@ -28,7 +28,7 @@ interface Props {
 export const CreatePostDialog: React.FC<Props> = ({ isOpen, onClose }) => {
   const [restaurant, setRestaurant] = React.useState<string>('');
   const [burger, setBurger] = React.useState<string>('');
-  const [description, setDescription] = React.useState<string>('');
+  const [review, setReview] = React.useState<string>('');
   const [tasteRating, setTasteRating] = React.useState<number>(0);
   const [textureRating, setTextureRating] = React.useState<number>(0);
   const [visualRating, setVisualRating] = React.useState<number>(0);
@@ -37,7 +37,7 @@ export const CreatePostDialog: React.FC<Props> = ({ isOpen, onClose }) => {
 
   const isDisabled = React.useMemo(() => {
     return !restaurant || !burger || !tasteRating || !textureRating || !visualRating;
-  }, [restaurant, burger, description, tasteRating, textureRating, visualRating]);
+  }, [restaurant, burger, review, tasteRating, textureRating, visualRating]);
 
   const handleOnImageChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -53,7 +53,7 @@ export const CreatePostDialog: React.FC<Props> = ({ isOpen, onClose }) => {
   const handleSubmit = React.useCallback(() => {
     const newPost: FeedPost = {
       userName: 'user',
-      review: description,
+      review: review,
       burger: burger,
       image: imageUrl,
       restaurant: {
@@ -66,7 +66,7 @@ export const CreatePostDialog: React.FC<Props> = ({ isOpen, onClose }) => {
       }
     };
     onClose(newPost);
-  }, [onClose, restaurant, burger, description, tasteRating, textureRating, visualRating]);
+  }, [onClose, restaurant, burger, review, tasteRating, textureRating, visualRating]);
 
   return (
     <Dialog open={isOpen} onClose={() => onClose()}>
@@ -92,8 +92,8 @@ export const CreatePostDialog: React.FC<Props> = ({ isOpen, onClose }) => {
           />
           <TextField
             variant="outlined"
-            label={'Description'}
-            onChange={(e) => setDescription(e.target.value)}
+            label={'Review'}
+            onChange={(e) => setReview(e.target.value)}
           />
           <Button variant={'contained'} component={'label'}>
             {imageName ? `Image: ${imageName}` : 'Upload Image'}
